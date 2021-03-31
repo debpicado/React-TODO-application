@@ -6,8 +6,12 @@ export function Home() {
 	const [listaTareas, setlistaTareas] = useState([]);
 
 	const agregarTarea = () => {
-		setlistaTareas([...listaTareas, tarea]);
-		setTarea("");
+		if (tarea == "") {
+			alert("Por Favor Agrega una tarea");
+		} else {
+			setlistaTareas([...listaTareas, tarea]);
+			setTarea("");
+		}
 	};
 	const DeleteItems = indexItem => {
 		setlistaTareas(prevState =>
@@ -59,28 +63,31 @@ var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
 var raw = JSON.stringify([
-  {
-    "label": "Make the bed",
-    "done": false
-  },
-  {
-    "label": "Walk the dog",
-    "done": false
-  },
-  {
-    "label": "Do the replits",
-    "done": false
-  }
+	{
+		label: "Make the bed",
+		done: false
+	},
+	{
+		label: "Walk the dog",
+		done: false
+	},
+	{
+		label: "Do the replits",
+		done: false
+	}
 ]);
 
 var requestOptions = {
-  method: 'GET',
-  headers: myHeaders,
-  body: raw,
-  redirect: 'follow'
+	method: "GET",
+	headers: myHeaders,
+	body: raw,
+	redirect: "follow"
 };
 
-fetch("https://assets.breatheco.de/apis/fake/todos/user/debpicado", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+fetch(
+	"https://assets.breatheco.de/apis/fake/todos/user/debpicado",
+	requestOptions
+)
+	.then(response => response.text())
+	.then(result => console.log(result))
+	.catch(error => console.log("error", error));
